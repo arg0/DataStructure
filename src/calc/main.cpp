@@ -29,7 +29,21 @@ bool is_bracket_vaild(string infix)
         return false;
     }
 }
+string omit_spaces(string infix)
+{
+    string result=infix;
+    size_t index;
+    while((index=result.find(string(" ")))!=string::npos)
+    {
+        result.erase(index,1);
+    }
+    return result;
+}
 
+string prepeocess(string infix)
+{
+
+}
 
 int main()
 {
