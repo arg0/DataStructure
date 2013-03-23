@@ -71,6 +71,13 @@ string check_string(string infix)
     return result;
 }
 
+string one_operator(string infix)
+{
+    string result=infix;
+
+}
+
+
 string preprocess(string infix)
 {
 
