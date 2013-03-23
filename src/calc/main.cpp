@@ -6,7 +6,7 @@ using namespace std;
 
 bool is_bracket_vaild(string infix)
 {
-    stack bracket;
+    stack<char> bracket;
     for(int i=0;i<infix.size();i++)
     {
         if(infix[i]=='(')
@@ -17,7 +17,7 @@ bool is_bracket_vaild(string infix)
         {
             if(bracket.empty())
             {
-                cout<<"Bracket Error !";<<endl;
+                cout<<"Bracket Error !"<<endl;
                 return false;
             }
             bracket.pop();
@@ -25,7 +25,7 @@ bool is_bracket_vaild(string infix)
     }
     if(!bracket.empty())
     {
-        cout<<"Bracket Error !";<<endl;
+        cout<<"Bracket Error !"<<endl;
         return false;
     }
 }
