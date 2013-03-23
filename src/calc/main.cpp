@@ -1,8 +1,37 @@
-#include <QCoreApplication>
+#include <string>
+#include <iostream>
+#include <stack>
 
-int main(int argc, char *argv[])
+using namespace std;
+
+bool is_bracket_vaild(string infix)
 {
-    QCoreApplication a(argc, argv);
-    
-    return a.exec();
+    stack bracket;
+    for(int i=0;i<infix.size();i++)
+    {
+        if(infix[i]=='(')
+        {
+            bracket.push(infix[i]);
+        }
+        else if(infix[i]==')')
+        {
+            if(bracket.empty())
+            {
+                cout<<"Bracket Error !";<<endl;
+                return false;
+            }
+            bracket.pop();
+        }
+    }
+    if(!bracket.empty())
+    {
+        cout<<"Bracket Error !";<<endl;
+        return false;
+    }
+}
+
+
+int main()
+{
+    return 0;
 }
