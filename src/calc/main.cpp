@@ -29,6 +29,7 @@ bool is_bracket_vaild(string infix)
         return false;
     }
 }
+
 string omit_spaces(string infix)
 {
     string result=infix;
@@ -40,7 +41,37 @@ string omit_spaces(string infix)
     return result;
 }
 
-string prepeocess(string infix)
+string check_string(string infix)
+{
+    string result=infix;
+    set<char> vaild_char_set;
+    for(int i=0;i<9;i++)
+    {
+        vaild_char_set.insert('0'+i);
+    }
+    vaild_char_set.insert('+');
+    vaild_char_set.insert('-');
+    vaild_char_set.insert('*');
+    vaild_char_set.insert('/');
+    vaild_char_set.insert('%');
+    vaild_char_set.insert('^');
+    vaild_char_set.insert('(');
+    vaild_char_set.insert(')');
+    vaild_char_set.insert('e');
+    vaild_char_set.insert('E');
+    vaild_char_set.insert('.');
+    for(int i=0;i<result.size();i++)
+    {
+        if(vaild_char_set.find(result[i])==vaild_char_set.end())
+        {
+            cout<<"Input Error !"<<result[i]<<" "<<endl;
+            exit(-1);
+        }
+    }
+    return result;
+}
+
+string preprocess(string infix)
 {
 
 }
