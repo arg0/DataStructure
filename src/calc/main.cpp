@@ -74,13 +74,57 @@ string check_string(string infix)
 string one_operator(string infix)
 {
     string result=infix;
+    for(int i = 0 ;i < result.size() ; i++ )
+    {
+        char temp = result[i];
+        if ( temp != '+' && temp != '-' )
+        {
+            continue;
+        }
+        if ( i == 0 )
+        {
+            result.insert(i,1,0+'0');
+        }
+        else if ( i-1>0 &&!isdigit(result[i-1]) && result[i-1]!=')' )
+        {
+            result.insert(i,"(0");
+            int j=i+3;
+            int bracket_count=0;
+            for(;j<result.size();j++)
+            {
+                if(isdigit(result[j])||result[j]=='.')
+                {
+                    continue;
+                }
+                else if(result[j]=='(')
+                {
 
+                    bracket_count++;
+                }
+                else if(result[j]==')')
+                {
+                    if((--bracket_count) == 0)
+                    {
+                        break;
+                    }
+                }
+                else if(bracket_count==0)
+                {
+                    break;
+                }
+            }
+            i = j;
+            result.insert(j,')');
+
+        }
+    }
+    return result;
 }
 
 
 string preprocess(string infix)
 {
-
+    return one_operator(check_string(omit_spaces(infix)));
 }
 
 int main()
