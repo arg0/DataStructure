@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <stack>
+#include <set>
 
 using namespace std;
 
@@ -98,7 +99,6 @@ string one_operator(string infix)
                 }
                 else if(result[j]=='(')
                 {
-
                     bracket_count++;
                 }
                 else if(result[j]==')')
@@ -114,7 +114,7 @@ string one_operator(string infix)
                 }
             }
             i = j;
-            result.insert(j,')');
+            result.insert(j,")");
 
         }
     }
@@ -126,6 +126,46 @@ string preprocess(string infix)
 {
     return one_operator(check_string(omit_spaces(infix)));
 }
+
+
+
+
+double calculate_two(double a, double b,string operand)
+{
+    double result;
+    if(operand == "+")
+    {
+        result = a+b;
+    }
+    else if(operand == "-")
+    {
+        result = a-b;
+    }
+    else if(operand == "*")
+    {
+        result = a*b;
+    }
+    else if(operand == "/")
+    {
+        if(b==0)
+        {
+            cout<<"Divid by 0"<<endl;
+            exit(-1);
+        }
+        result = a/b;
+    }
+    else if(operand == "%")
+    {
+        result = (static_cast<int>a % static_cast<int>b);
+    }
+    else if(operand == "^")
+    {
+        result = pow(a,b);
+    }
+    return result;
+}
+
+
 
 int main()
 {
