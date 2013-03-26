@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stack>
 #include <set>
+#include <cmath>
 
 using namespace std;
 
@@ -115,7 +116,6 @@ string one_operator(string infix)
             }
             i = j;
             result.insert(j,")");
-
         }
     }
     return result;
@@ -156,7 +156,7 @@ double calculate_two(double a, double b,string operand)
     }
     else if(operand == "%")
     {
-        result = (static_cast<int>a % static_cast<int>b);
+        result = (static_cast<int>(a) % static_cast<int>(b));
     }
     else if(operand == "^")
     {
