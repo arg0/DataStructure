@@ -263,6 +263,31 @@ double calculate_two(double a, double b,string operand)
     return result;
 }
 
+double calculate_post(queue<string>& post)
+{
+    stack<double> result_stack;
+    while(!post.empty()) {
+        string temp = post.front();
+        post.pop();
+        if(is_operator(temp[0])) {
+            if(result_stack.size()<2) {
+                cout<<"Expression Error!"<<endl;
+                exit(-1);
+            }
+            double operand2 = result_stack.top();
+            result_stack.pop();
+            double operand1 = result_stack.top();
+            result_stack.pop();
+
+            double m = calculate_two(operand1, operand2, temp);
+            result_stack.push(m);
+        } else {
+            double temp_operand = atof(temp.c_str());
+            result_stack.push(temp_operand);
+        }
+    }
+    return result_stack.top();
+}
 
 
 int main()
