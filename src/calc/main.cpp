@@ -6,6 +6,31 @@
 
 using namespace std;
 
+bool is_operator(char ch)
+{
+    set<char> operator_set;
+    operator_set.insert('+');
+    operator_set.insert('-');
+    operator_set.insert('*');
+    operator_set.insert('/');
+    operator_set.insert('%');
+    operator_set.insert('^');
+    return operator_set.find(ch) != operator_set.end();
+}
+
+int compare_priority(char a, char b)
+{
+    map<char,int>operator_priority;
+    operator_priority.insert(make_pair('+',1));
+    operator_priority.insert(make_pair('-',1));
+    operator_priority.insert(make_pair('*',2));
+    operator_priority.insert(make_pair('/',2));
+    operator_priority.insert(make_pair('%',2));
+    operator_priority.insert(make_pair('^',3));
+
+    return operator_priority[a]-operator_priority[b];
+}
+
 bool is_bracket_vaild(string infix)
 {
     stack<char> bracket;
@@ -41,19 +66,6 @@ string omit_spaces(string infix)
         result.erase(index,1);
     }
     return result;
-}
-
-int compare_priority(char a, char b)
-{
-    map<char,int>operator_priority;
-    operator_priority.insert(make_pair('+',1));
-    operator_priority.insert(make_pair('-',1));
-    operator_priority.insert(make_pair('*',2));
-    operator_priority.insert(make_pair('/',2));
-    operator_priority.insert(make_pair('%',2));
-    operator_priority.insert(make_pair('^',3));
-
-    return operator_priority[a]-operator_priority[b];
 }
 
 string check_string(string infix)
