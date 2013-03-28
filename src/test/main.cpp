@@ -1,3 +1,4 @@
+#include <QCoreApplication>
 #include <string>
 #include <iostream>
 #include <stack>
@@ -292,8 +293,10 @@ double calculate_post(queue<string>& post)
 }
 
 
-int main(int argc, char *argv)
+
+int main(int argc, char *argv[])
 {
+    QCoreApplication a(argc, argv);
     string infix;
     cout<<"Input"<<endl;
     getline(cin,infix);
@@ -319,5 +322,5 @@ int main(int argc, char *argv)
     cout<<endl;
     double result = calculate_post(result_post);
     cout<<endl<<"Result: "<<result<<endl;
-    return 0;
+    return a.exec();
 }
