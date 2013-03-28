@@ -185,7 +185,7 @@ queue<string> infix_to_post(string infix) {
 
             char top_stack = operator_stack.top();
             while(compare_priority(infix[i], top_stack)<=0) {
-                 if(compare_priority(infix[i], top_stack)==0 && infix[i]=='^') {   //因为'^'的结合性从右向左，所以单独处理
+                if(compare_priority(infix[i], top_stack)==0 && infix[i]=='^') {   //因为'^'的结合性从右向左，所以单独处理
                     break;
                 }
                 postfix.push(string(1, top_stack));
@@ -290,7 +290,32 @@ double calculate_post(queue<string>& post)
 }
 
 
-int main()
+int main(int argc, char *argv)
 {
+    string infix;
+    cout<<"Input"<<endl;
+    getline(cin,infix);
+    cout<<endl<<"The Expression:"<<infix<<endl;
+
+    bool vaild=is_bracket_vaild(infix);
+    if(vaild){
+        cout<<endl<<"Bracket Right."<<endl<<endl;
+    }else{
+        return 0;
+    }
+
+    string result_infix = preprocess(result_infix);
+    cout<<"After preprocess:"<<result_infix<<endl;
+
+    queue<string> result_post=infix_to_post(result_infix);
+    queue<string> tmp=result_post;
+    cout<<"posfix:";
+    while(!temp.empty()) {
+        cout<<temp.front()<<"  ";
+        temp.pop();
+    }
+    cout<<endl;
+    double result = calculate_post(result_post);
+    cout<<endl<<"Result: "<<result<<endl;
     return 0;
 }
